@@ -8,14 +8,15 @@ export const FirstDiv = styled.div`
   margin: 3rem auto;
   padding: 1rem 2rem;
   column-gap: 2rem;
+  .image {
+    text-align: center;
+  }
+
   @media (max-width: 1160px) {
     display: flex;
     flex-direction: column;
     row-gap: 2rem;
     width: 90%;
-    .image {
-      text-align: center;
-    }
   }
   @media (max-width: 610px) {
     width: 95%;
@@ -92,10 +93,10 @@ export const Buttons = styled.div`
 `;
 
 interface ButtonIntercafe {
-  active?: boolean;
+  active: boolean;
 }
 export const Bt = styled.button<ButtonIntercafe>`
-  background: ${({ active }) => (active ? "red" : `${SecondaryColor}`)}; ;
+  background: ${({ active }) => (active ? `#b794ff` : `${SecondaryColor}`)}; ;
 `;
 
 export const ListPosts = styled.div`

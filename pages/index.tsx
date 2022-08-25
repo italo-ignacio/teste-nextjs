@@ -161,7 +161,7 @@ const Home = ({ categories, posts, medias }: Types) => {
           {categoryId != 0 ? (
             <>
               <br /> <br />
-              <p>To deselect press on selected.</p>
+              <p>To deselect press the selected one.</p>
             </>
           ) : (
             <></>
