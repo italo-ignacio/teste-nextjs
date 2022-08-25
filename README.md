@@ -1,4 +1,8 @@
+## Requirements
+- Have [Node.js](https://nodejs.org/en/) installed
 ## Getting Started
+
+ 
 
 First, install the dependencies:
 
