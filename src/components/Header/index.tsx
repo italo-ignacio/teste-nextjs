@@ -27,7 +27,12 @@ export default function Header() {
           </Link>
           <Link href="/">
             <a onClick={toggleMenu}>
-              <Image src="/icon.png" width="15px" height="15px" alt="Logo" />{" "}
+              <Image
+                src="/icon.png"
+                width="15px"
+                height="15px"
+                alt="Search icon"
+              />{" "}
               Search
             </a>
           </Link>

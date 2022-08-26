@@ -1,4 +1,4 @@
-import type { GetServerSideProps, NextPage } from "next";
+import type { GetServerSideProps } from "next";
 import Image from "next/image";
 import Header from "../src/components/Header";
 import {
@@ -45,6 +45,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
     .then((data) => {
       return data;
     });
+
   return {
     props: {
       categories,
@@ -69,7 +70,7 @@ interface PostType {
   categories: Array<number>;
 }
 
-interface MediasType {
+interface MediaType {
   id: number;
   guid: {
     rendered: string;
@@ -82,7 +83,7 @@ interface MediasType {
 interface Types {
   categories: CategoryType[];
   posts: PostType[];
-  medias: MediasType[];
+  medias: MediaType[];
 }
 
 const Home = ({ categories, posts, medias }: Types) => {
@@ -95,6 +96,7 @@ const Home = ({ categories, posts, medias }: Types) => {
       setCategoryId(id);
     }
   };
+
   const filteredPosts = () => {
     if (categoryId > 0) {
       return posts.filter((post) =>
@@ -105,13 +107,13 @@ const Home = ({ categories, posts, medias }: Types) => {
     }
   };
 
-  const ConvertDate = (date: string) => {
+  const convertDate = (date: string) => {
     const date_ = new Date(date).toDateString().split(" ");
-    const dateFormated = `${date_[1]} ${date_[2]}, ${date_[3]}`;
-    return dateFormated;
+    const dateFormatted = `${date_[1]} ${date_[2]}, ${date_[3]}`;
+    return dateFormatted;
   };
 
-  const GetMedia = (id: number) => {
+  const getMedia = (id: number) => {
     const media = medias.find((element) => element.id == id);
     return { url: media?.guid.rendered, alt: media?.title.rendered };
   };
@@ -138,12 +140,16 @@ const Home = ({ categories, posts, medias }: Types) => {
             tutorials, ect
           </label>
           <div className="input_div">
-            <input placeholder="Enter your email here..." type={"email"} />
+            <input
+              placeholder="Enter your email here..."
+              type={"email"}
+              alt={"Your email"}
+            />
             <button>Subscribe</button>
           </div>
         </SectionText>
         <div className="image">
-          <Image src="/Group.png" width="453px" height="345px" alt="Logo" />
+          <Image src="/Group.png" width="453px" height="345px" alt="Group" />
         </div>
       </FirstDiv>
       <Categories id="category">
@@ -172,8 +178,8 @@ const Home = ({ categories, posts, medias }: Types) => {
         {filteredPosts().map((post) => (
           <Post key={post.id}>
             <img
-              alt={GetMedia(post.featured_media).alt}
-              src={GetMedia(post.featured_media).url}
+              alt={getMedia(post.featured_media).alt}
+              src={getMedia(post.featured_media).url}
             />
             <h2>{post.title.rendered}</h2>
             <div>
@@ -186,7 +192,7 @@ const Home = ({ categories, posts, medias }: Types) => {
                 ));
               })}
 
-              <p>{ConvertDate(post.date)}</p>
+              <p>{convertDate(post.date)}</p>
             </div>
           </Post>
         ))}
